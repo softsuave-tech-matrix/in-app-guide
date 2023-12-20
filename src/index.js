@@ -1,8 +1,7 @@
 let tourData;
 let startOnLoad = false;
 let currentStep = 0;
-const stepTooltip = document.getElementById("step-tooltip");
-const stepProgressList = document.getElementById("step-progress");
+let exportObject;
 
 const tourElement = `
   <div class="tour-overlay" id="overlay">
@@ -21,7 +20,6 @@ const tourElement = `
     </div>
   </div>
 `;
-
 
 function toolTipStyles(position) {
   const positionMap = {
@@ -105,17 +103,19 @@ function updateButtonDisplay(step) {
   } else {
     nextStepButton.style.display = "inline-block";
   }
-};
+}
 
-function initializeTourData(userTourData) {
+function initializeTourData(userTourData, userStartOnLoad) {
   tourData = userTourData;
-};
+  startOnLoad = userStartOnLoad;
+}
 
 function showStep(step) {
   const stepData = tourData[step];
   const progressBar = document.getElementById("progress-completed");
-
-  if (!stepData) return;
+  const stepTooltip = document.getElementById("step-tooltip");
+  
+  if (!stepData || !stepTooltip) return;
 
   stepTooltip.style.transition =
     "opacity 0.3s, transform 0.3s, width 0.3s, height 0.3s";
@@ -152,8 +152,7 @@ function showStep(step) {
     stepTooltip.style.top = targetRect.top + "px";
     stepTooltip.style.left = targetRect.left + "px";
     stepTooltip.style.transform = tooltipTransform;
-    stepTooltip.style.width = targetRect.width + "px";
-    stepTooltip.style.height = targetRect.height + "px";
+    stepTooltip.style.padding = "10px";
 
     const arrow = document.getElementById("tool-arrow");
     const { left, top, transform } = arrowStyles(stepData.position);
@@ -170,7 +169,7 @@ function showStep(step) {
   }, 300);
 
   updateButtonDisplay(step);
-};
+}
 
 function handleTourButtonClick(event) {
    const target = event.target;
@@ -192,24 +191,36 @@ function handleTourButtonClick(event) {
       element.classList.remove("highlighted");
     });
   }
-};
+}
 
-// Add event listener to a parent element (e.g., document body)
-document.body.addEventListener("click", handleTourButtonClick);
+// Check if running in a browser environment before adding the event listener
+if (typeof window !== 'undefined') {
+  // Add event listener to a parent element (e.g., document body)
+  document.body.addEventListener("click", handleTourButtonClick);
 
-// Starting page onload if the "startOnLoad" is true
-function startOnMount() {
-  window.onload = function () {
-    if (startOnLoad) {
-      showStep(currentStep);
-    }
+  // Starting page onload if the "startOnLoad" is true
+  function startOnMount() {
+    window.onload = function () {
+      if (startOnLoad) {
+        showStep(currentStep);
+      }
+    };
+  }
+
+  exportObject = {
+    startOnMount,
+    initializeTourData,
+    startOnLoad,
+    tourElement,
+    showStep,
   };
-};
+} else {
+  exportObject = {
+    initializeTourData,
+    startOnLoad,
+    tourElement,
+    showStep,
+  };
+}
 
-module.exports = {
-  startOnMount,
-  initializeTourData,
-  tourData,
-  startOnLoad,
-  tourElement
-};
+module.exports = exportObject;
