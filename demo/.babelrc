@@ -1,0 +1,4 @@
+{
+    "sourceType": "unambiguous", // "script" or "module
+    "presets": ["@babel/preset-env"]
+}
