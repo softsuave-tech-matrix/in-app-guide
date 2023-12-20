@@ -1,0 +1,145 @@
+.tour-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tour-tooltip {
+  position: absolute;
+  max-width: 300px;
+  background-color: rgb(27, 154, 204);
+  color: white;
+  border: 1px solid rgb(27, 154, 204);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 22px;
+  text-align: center;
+}
+
+#tool-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent rgb(27, 154, 204) transparent;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tour-tooltip h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.tour-tooltip p {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.tour-tooltip button {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.tour-tooltip button:hover {
+  background-color: #0056b3;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 90vh;
+}
+
+.empty {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.element {
+  padding: 50px;
+  border: 2px solid #ccc;
+}
+
+.highlighted {
+  border: 2px solid #3498db;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+#step-progress {
+  width: 100%;
+  height: 10px;
+  background-color: #007bff;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+#progress-completed {
+  width: 0;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+
+.highlighted .tour-tooltip {
+  border-color: #3498db;
+}
+
+.highlighted .tour-tooltip h2 {
+  color: #3498db;
+}
+
+.highlighted .tour-tooltip button {
+  background-color: #3498db;
+}
+
+.highlighted .tour-tooltip button:hover {
+  background-color: #217dbb;
+}
+
+.highlighted .tour-tooltip p {
+  color: #555;
+}
+
+.highlighted .tour-tooltip p strong {
+  color: #000;
+}
+
+.highlighted .tour-tooltip p a {
+  color: #3498db;
+}
+
+.end-tour {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
