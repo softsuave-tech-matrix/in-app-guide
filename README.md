@@ -116,10 +116,11 @@ initializeTour(userTourData);
 For a Working demo copy the [demo](https://github.com/softsuave-tech-matrix/in-app-guide/tree/main/demo) folder and follow the below steps
 
 - Copy the demo folder
+- And `cd` into the folder
 - Run `npm install`
 - Run `npm run build`
 - For serving the app, you can serve it with your custom script or run `npm i -g live-server`
-- And `cd` into the folder and run `live-server` and your demo will be running on the `http://localhost:8080`.
+- and run `live-server` and your demo will be running on the `http://localhost:8080`.
 
 ## LICENSE
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/softsuave-tech-matrix/in-app-guide/blob/main/LICENSE) file for details.
