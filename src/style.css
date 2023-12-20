@@ -61,26 +61,6 @@
   background-color: #0056b3;
 }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 90vh;
-}
-
-.empty {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.element {
-  padding: 50px;
-  border: 2px solid #ccc;
-}
-
 .highlighted {
   border: 2px solid #3498db;
   background-color: #f1f1f1;
