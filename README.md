@@ -22,22 +22,38 @@ npm install in-app-guide
 ```javascript
   // Import the in-app-guide module
   const inAppGuide = require('in-app-guide');
+
+  // require guide style.css on top level file
+  require("in-app-guide/src/style.css");
   
   // Initialize tour data
   const userTourData = [
     // ... (user-provided tour data similar to the existing structure)
   ];
   
-  inAppGuide.initializeTourData(userTourData);
+  // ensure that browser environment window is available
+  if (typeof window !== "undefined" && inAppGuide) {
+
+    // initialize the tour data for traversing in the window
+    inAppGuide.initializeTourData(tourData, true);
+
+    // get any element, in this case an element with id as "app"
+    const app = document.getElementById("app")
+
+    // pass on the guide element onto the window as HTML
+    app.innerHTML += inAppGuide.tourElement;
+  }
   
-  // Start the tour (assuming startOnLoad is true)
-  inAppGuide.showStep(inAppGuide.currentStep);
+  
 ```
 ### React
 ```javascript
   import React, { useEffect } from 'react';
   import inAppGuide from 'in-app-guide';
   
+  // require guide style.css on top level file
+  import "in-app-guide/src/style.css";
+
   // Initialize tour data
   const userTourData = [
     // ... (user-provided tour data similar to the existing structure)
@@ -58,6 +74,8 @@ npm install in-app-guide
   
     return (
       <div>
+        <div dangerouslySetInnerHTML={inAppGuide.tourElement} />
+
         {/* Your React app content */}
       </div>
     );
@@ -93,5 +111,5 @@ const userTourData = [
 initializeTour(userTourData);
 ```
 
-# LICENSE
+## LICENSE
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/softsuave-tech-matrix/in-app-guide/blob/main/LICENSE) file for details.
