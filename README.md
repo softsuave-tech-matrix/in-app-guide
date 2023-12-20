@@ -94,4 +94,4 @@ initializeTour(userTourData);
 ```
 
 # LICENSE
-This project is licensed under the MIT License - see the [LICENSE]() file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/softsuave-tech-matrix/in-app-guide/blob/main/LICENSE) file for details.
